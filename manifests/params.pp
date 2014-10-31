@@ -52,11 +52,11 @@ class mongodb::params inherits mongodb::globals {
         } else {
           $server_package_name = 'mongodb-org'
         }
-        $service_name = 'mongodb'
+        $service_name = pick($service_name, 'mongod')
         $config       = '/etc/mongodb.conf'
         $dbpath       = '/var/lib/mongodb'
         $logpath      = '/var/log/mongodb/mongod.log'
-        $bind_ip      = ['127.0.0.1']
+        $bind_ip      = pick($bind_ip, ['127.0.0.1'])
       } else {
         # although we are living in a free world,
         # I would not recommend to use the prepacked
